@@ -1,5 +1,8 @@
 package com.da.inspectionList.service;
 
-public class TaskServiceImpl implements TaskServiceInterface {
+import org.springframework.stereotype.Service;
 
+@Service
+public class TaskServiceImpl implements TaskServiceInterface {
+  
 }
