@@ -51,5 +51,9 @@ public class TaskServiceImpl implements TaskServiceInterface {
     Task task = taskRepository.findTaskById(task_id);
     return task;
   }
+
+  public void saveTask(Task task) {
+    taskRepository.save(task);    
+  }
   
 }
