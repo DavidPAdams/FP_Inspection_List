@@ -9,19 +9,19 @@ import javax.persistence.Id;
 @Entity
 public class Task {
   
-  enum ConstructionType {
+  public enum ConstructionType {
     FOUNDATION,
     WELDING,
     MASONRY,
     REBAR
   }
   
-  enum Status {
+  public enum Status {
     INSPECTED,
     NOT_INSPECTED
   }
   
-  enum Result {
+  public enum Result {
     PASS,
     FAIL
   }
