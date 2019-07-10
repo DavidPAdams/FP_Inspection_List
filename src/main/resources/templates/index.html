@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<link th:replace="fragments/headLinks">
 <title>Inspection Task List</title>
 </head>
 <body>
   <div class="container">
+    <div th:replace="fragments/navBar"></div>
     <h1>Inspections</h1>
   </div>
+  <div th:replace="fragments/scripts"></div>
 </body>
 </html>
