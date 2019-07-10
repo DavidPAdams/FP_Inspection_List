@@ -8,7 +8,9 @@
 <body>
   <div class="container">
     <div th:replace="fragments/navBar"></div>
-    <h1>Inspection Task</h1>
+    <h1>New Inspection Task</h1>
+    <div th:replace="fragments/newTaskForm"></div>
+    <button class="btn btn-md btn-success btn-block" name="Submit" value="Submit" type="Submit" th:text="Submit"></button>
   </div>
   <div th:replace="fragments/scripts"></div>  
 </body>
