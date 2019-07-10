@@ -9,8 +9,13 @@
   <div class="container">
     <div th:replace="fragments/navBar"></div>
     <h1>New Inspection Task</h1>
-    <div th:replace="fragments/newTaskForm"></div>
-    <button class="btn btn-md btn-success btn-block" name="Submit" value="Submit" type="Submit" th:text="Submit"></button>
+    <form th:action="@{/tasks}" method="post" autocomplete="off">
+      <div th:replace="fragments/newTaskForm"></div>
+      <button class="btn btn-md btn-success btn-block" name="Submit" value="Submit" type="Submit" th:text="Submit"></button>
+    </form>
+    <div th:if="${successMessage}">
+      <h3><span class="text-success" th:utext="${successMessage}"></span></h3>
+    </div>
   </div>
   <div th:replace="fragments/scripts"></div>  
 </body>
