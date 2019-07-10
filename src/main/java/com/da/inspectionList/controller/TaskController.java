@@ -1,10 +1,14 @@
 package com.da.inspectionList.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.da.inspectionList.model.Task;
 import com.da.inspectionList.service.TaskServiceImpl;
@@ -20,17 +24,27 @@ public class TaskController {
     return "index";
   }
 
+  @GetMapping("/tasks/new")
+  public String getTaskForm(Model model) {
+    model.addAttribute("task", new Task());
+    return "newTask";
+  }
+  
+  @PostMapping("/tasks")
+  public String submitTaskForm(@Valid Task task, BindingResult bindingResult, Model model) {
+    if (!bindingResult.hasErrors()) {
+      taskServiceImpl.saveTask(task);
+      model.addAttribute("successMessage", "Inspection Task was successfully created");
+      model.addAttribute("task", new Task());
+    }
+    return "newTask";
+  }
+
   @GetMapping("/tasks/{task_id}")
   public String getTaskById(@PathVariable("task_id") Long task_id, Model model) {
     Task task = taskServiceImpl.findTaskById(task_id);
     model.addAttribute("task", task);
     return "task";
-  }
-
-  @GetMapping("/tasks/new")
-  public String getTaskForm(Model model) {
-    model.addAttribute("task", new Task());
-    return "newTask";
   }
 
 }
