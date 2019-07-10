@@ -18,11 +18,13 @@ public class Task {
   
   public enum Status {
     INSPECTED,
+    PENDING,
     NOT_INSPECTED
   }
   
   public enum Result {
     PASS,
+    PENDING,
     FAIL
   }
   
@@ -33,15 +35,17 @@ public class Task {
   
   private ConstructionType constructionType;
   private String location;
+  private String inspActivity;
   private String inspector;
   private Status status = Status.NOT_INSPECTED;
   private Result result;
   
   public Task() {};
   
-  public Task(ConstructionType constructionType, String location, String inspector, Status status) {
+  public Task(ConstructionType constructionType, String location, String inspActivity, String inspector, Status status) {
     this.constructionType = constructionType;
     this.location = location;
+    this.inspActivity = inspActivity;
     this.inspector = inspector;
     this.status = status;
   }
@@ -60,6 +64,14 @@ public class Task {
 
   public void setLocation(String location) {
     this.location = location;
+  }
+
+  public String getInspActivity() {
+    return inspActivity;
+  }
+
+  public void setInspActivity(String inspActivity) {
+    this.inspActivity = inspActivity;
   }
 
   public String getInspector() {
@@ -92,8 +104,7 @@ public class Task {
 
   @Override
   public String toString() {
-    return "Task [id=" + id + ", constructionType=" + constructionType + ", location=" + location + ", inspector=" + inspector + ", status="
-        + status + ", result=" + result + "]";
+    return "Task [id=" + id + ", constructionType=" + constructionType + ", inspActivity=" + inspActivity + ", location=" + location + ", inspector=" + inspector + ", status=" + status + ", result=" + result + "]";
   }
   
 }
