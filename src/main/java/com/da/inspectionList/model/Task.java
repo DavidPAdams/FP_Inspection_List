@@ -38,16 +38,17 @@ public class Task {
   private String inspActivity;
   private String inspector;
   private Status status = Status.NOT_INSPECTED;
-  private Result result;
+  private Result result = Result.PENDING;
   
   public Task() {};
   
-  public Task(ConstructionType constructionType, String location, String inspActivity, String inspector, Status status) {
+  public Task(ConstructionType constructionType, String location, String inspActivity, String inspector, Status status, Result result) {
     this.constructionType = constructionType;
     this.location = location;
     this.inspActivity = inspActivity;
     this.inspector = inspector;
     this.status = status;
+    this.result = result;
   }
 
   public ConstructionType getConstructionType() {
