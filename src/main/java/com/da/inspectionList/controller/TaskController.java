@@ -1,5 +1,7 @@
 package com.da.inspectionList.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +11,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.da.inspectionList.model.Task;
+import com.da.inspectionList.model.Task.ConstructionType;
 import com.da.inspectionList.service.TaskServiceImpl;
 
 @Controller
@@ -20,7 +25,15 @@ public class TaskController {
   private TaskServiceImpl taskServiceImpl;
 
   @GetMapping(value = { "/tasks", "/" })
-  public String index() {
+  public String index(@RequestParam(value="filter", required=false) ConstructionType filter, Model model) {
+    List<Task> tasks = taskServiceImpl.findAll();
+    if (filter == null) {
+      tasks = taskServiceImpl.findAll();
+    } else {
+      tasks = taskServiceImpl.findAllTasksByConstructionType(filter);
+    }
+    model.addAttribute("filter", filter);
+    model.addAttribute("tasks", tasks);
     return "index";
   }
 
@@ -45,6 +58,25 @@ public class TaskController {
     Task task = taskServiceImpl.findTaskById(task_id);
     model.addAttribute("task", task);
     return "task";
+  }
+  
+  @GetMapping("/task/{task_id}/edit")
+  public String showUpdateForm(@PathVariable("task_id") Long task_id, Model model) {
+    Task task = taskServiceImpl.findTaskById(task_id);
+    model.addAttribute("task", task);
+    return "editTask";
+  }
+  
+  @PutMapping("/task/{task_id}/edit")
+  public String update(@PathVariable Long task_id, Task task, Model model) {
+    Task updateTask = taskServiceImpl.findTaskById(task_id);
+    updateTask.setLocation(task.getLocation());
+    updateTask.setInspActivity(task.getInspActivity());
+    updateTask.setInspector(task.getInspector());
+    updateTask.setStatus(task.getStatus());
+    updateTask.setResult(task.getResult());
+    taskServiceImpl.saveTask(updateTask);
+    return "redirect:/task/" + updateTask.getId();
   }
 
 }
