@@ -31,9 +31,6 @@
         </div>
       </div>
     </div>
-    <div th:if="${#lists.isEmpty(tasks) and filter == 'all'}">
-      <h3>No tasks have been created yet</h3>
-    </div>
   </div>
   <div th:replace="fragments/scripts"></div>
 </body>
