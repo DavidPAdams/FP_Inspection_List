@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:replace="fragments/headLinks">
+<title>Inspection Task List</title>
+</head>
+<body>
+  <div class="container">
+    <div th:replace="fragments/navBar"></div>
+    <h1>Edit Inspection Task</h1>
+    <form th:action="@{/tasks}" method="post" autocomplete="off">
+      <div th:replace="fragments/editTaskForm"></div>
+      <button class="btn btn-md btn-success btn-block" name="Submit" value="Submit" type="Submit" th:text="Submit"></button>
+    </form>
+    <div th:if="${successMessage}">
+      <h3><span class="text-success" th:utext="${successMessage}"></span></h3>
+    </div>
+  </div>
+  <div th:replace="fragments/scripts"></div>  
+</body>
+</html>
