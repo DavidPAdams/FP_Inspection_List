@@ -70,6 +70,7 @@ public class TaskController {
   @PutMapping("/task/{task_id}/edit")
   public String update(@PathVariable Long task_id, Task task, Model model) {
     Task updateTask = taskServiceImpl.findTaskById(task_id);
+    updateTask.setConstructionType(task.getConstructionType());
     updateTask.setLocation(task.getLocation());
     updateTask.setInspActivity(task.getInspActivity());
     updateTask.setInspector(task.getInspector());
