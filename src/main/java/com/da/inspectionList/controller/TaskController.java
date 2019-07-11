@@ -25,9 +25,9 @@ public class TaskController {
 
   @GetMapping(value = { "/tasks", "/" })
   public String index(@RequestParam(value="filter", required=false) ConstructionType filter, Model model) {
-    List<Task> tasks = taskServiceImpl.findAllTasks();
+    List<Task> tasks = taskServiceImpl.findAll();
     if (filter == null) {
-      tasks = taskServiceImpl.findAllTasks();
+      tasks = taskServiceImpl.findAll();
     } else {
       tasks = taskServiceImpl.findAllTasksByConstructionType(filter);
     }

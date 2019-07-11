@@ -16,8 +16,8 @@ public class TaskServiceImpl implements TaskServiceInterface {
   private TaskRepository taskRepository;
 
   @Override
-  public List<Task> findAllTasks() {
-    List<Task> tasks = taskRepository.findAllTasks();
+  public List<Task> findAll() {
+    List<Task> tasks = taskRepository.findAll();
     return tasks;
   }
 
