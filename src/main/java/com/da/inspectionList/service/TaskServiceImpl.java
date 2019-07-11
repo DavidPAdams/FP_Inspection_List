@@ -55,5 +55,9 @@ public class TaskServiceImpl implements TaskServiceInterface {
   public void saveTask(Task task) {
     taskRepository.save(task);    
   }
+
+  public void deleteById(Long id) {
+    taskRepository.deleteById(id);
+  }
   
 }
