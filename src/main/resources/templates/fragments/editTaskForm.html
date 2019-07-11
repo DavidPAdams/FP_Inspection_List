@@ -7,17 +7,26 @@
   </div>
   <div class="form-group">
     <p>Describe Location:</p>
-    <input type="text" th:field="*{task.location}" placeholder="Location" class="form-control"/>
+    <input type="text" th:field="*{task.location}" placeholder="${task.location}" class="form-control"/>
   </div>
   <div class="form-group">
     <p>Describe Inspection Activity:</p>
-    <input type="text" th:field="*{task.inspActivity}" placeholder="Inspection Activity" class="form-control"/>
+    <input type="text" th:field="*{task.inspActivity}" placeholder="${task.inspActivity}" class="form-control"/>
   </div>
   <div class="form-group">
     <p>Inspector:</p>
-    <input type="text" th:field="*{task.inspector}" placeholder="Inspector's Name" class="form-control"/>
+    <input type="text" th:field="*{task.inspector}" placeholder="${task.inspector}" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <p>Select Inspection Status:</p>
+    <select th:field="*{task.status}" class="form-control" >
+      <option th:each="status : ${T(com.da.inspectionList.model.Task.Status).values()}" th:value="${status}" th:text="${status}"></option>
+    </select>
+  </div>
+  <div class="form-group">
+    <p>Select Inspection Result:</p>
+    <select th:field="*{task.result}" class="form-control" >
+      <option th:each="result : ${T(com.da.inspectionList.model.Task.Result).values()}" th:value="${result}" th:text="${result}"></option>
+    </select>
   </div>
 </div>
-
-
-<!-- Needs work -->
