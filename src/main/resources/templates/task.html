@@ -8,7 +8,16 @@
 <body>
   <div class="container">
     <div th:replace="fragments/navBar"></div>
-    <h1>View Inspection Task</h1>
+    <h1>Inspection Task Details</h1>
+    <h3 th:text="${task.constructionType}"></h3>
+    <h4 th:text="${task.location}"></h4>
+    <h4 th:text="${task.inspActivity}"></h4>
+    <h4 th:text="${task.inspector}"></h4>
+    <h5 th:text="${task.status}"></h5>
+    <h5 th:text="${task.result}"></h5>
+    <form th:action="@{/task/} + ${task.id} + @{/edit}" method="get">
+      <button type="Submit" class="btn btn-success">Edit Inspection Task</button>
+    </form>
   </div>
   <div th:replace="fragments/scripts"></div>
 </body>
