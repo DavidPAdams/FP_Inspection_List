@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.da.inspectionList.model.Task;
@@ -68,7 +70,7 @@ public class TaskController {
   }
   
   @PutMapping("/task/{task_id}/edit")
-  public String update(@PathVariable Long task_id, Task task, Model model) {
+  public String update(@PathVariable("task_id") Long task_id, Task task, Model model) {
     Task updateTask = taskServiceImpl.findTaskById(task_id);
     updateTask.setConstructionType(task.getConstructionType());
     updateTask.setLocation(task.getLocation());
@@ -77,7 +79,13 @@ public class TaskController {
     updateTask.setStatus(task.getStatus());
     updateTask.setResult(task.getResult());
     taskServiceImpl.saveTask(updateTask);
-    return "redirect:/task/" + updateTask.getId();
+    return "redirect:/tasks";
+  }
+  
+  @RequestMapping(value="/task/{task_id}", method = RequestMethod.DELETE)
+  public String delete(@PathVariable("task_id") Long id) {
+    taskServiceImpl.deleteById(id);
+    return "redirect:/tasks";
   }
 
 }
