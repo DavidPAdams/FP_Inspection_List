@@ -23,11 +23,10 @@
           <h5>
             <span th:text="${task.constructionType}"></span><br/>
             Project name / Location: <span th:text="${task.location}"></span><br/>
-            Inspection Activity: <a class="task" th:href="@{/tasks/} + ${task.id}">
-              <span th:text="${task.inspActivity}"></span><br/>
-            </a>
-            Inspector: <span th:text="${task.inspector}"></span>
+            Inspection Activity: <span th:text="${task.inspActivity}"></span><br/>
+            Inspector: <span th:text="${task.inspector}"></span><br/>  
           </h5>
+          <h5><a class="task" th:href="@{/tasks/} + ${task.id}">Task Details</a></h5>
         </div>
       </div>
     </div>
@@ -35,21 +34,3 @@
   <div th:replace="fragments/scripts"></div>
 </body>
 </html>
-
-
-
-    <div class="list-group" th:each="tweet:${tweetList}">
-      <div class="list-group-item list-group-item-action">
-        <div class="d-flex w-100 justify-content-between">
-          <h5>
-            <a class="username" th:href="@{/users/} + ${tweet.user.username}">
-            @<span th:text="${tweet.user.username}"></span></a>
-            <small th:text="${tweet.date}"></small>
-          </h5>
-        </div>
-        <p class="mb-1" th:utext="${tweet.message}"></p>
-      </div>
-    </div>
-    <div th:if="${#lists.isEmpty(tweetList) and filter == 'all'}">
-      <h3>No tweets have been created yet</h3>
-    </div>
