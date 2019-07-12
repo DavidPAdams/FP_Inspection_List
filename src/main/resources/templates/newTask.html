@@ -10,7 +10,24 @@
     <div th:replace="fragments/navBar"></div>
     <h1>New Inspection Task</h1>
     <form th:action="@{/tasks}" method="post" autocomplete="off">
-      <div th:replace="fragments/newTaskForm"></div>
+      <div class="form-group">
+        <p>Select Construction Type:</p>
+        <select th:field="*{task.constructionType}" autofocus class="form-control" >
+          <option th:each="type : ${T(com.da.inspectionList.model.Task.ConstructionType).values()}" th:value="${type}" th:text="${type}"></option>
+        </select>
+      </div>
+      <div class="form-group">
+        <p>Describe Location:</p>
+        <input type="text" th:field="*{task.location}" placeholder="Location" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <p>Describe Inspection Activity:</p>
+        <input type="text" th:field="*{task.inspActivity}" placeholder="Inspection Activity" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <p>Inspector:</p>
+        <input type="text" th:field="*{task.inspector}" placeholder="Inspector's Name" class="form-control"/>
+      </div>
       <button class="btn btn-md btn-success btn-block" name="Submit" value="Submit" type="Submit" th:text="Submit"></button>
     </form>
     <div th:if="${successMessage}">
