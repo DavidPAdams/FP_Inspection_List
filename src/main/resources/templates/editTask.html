@@ -11,12 +11,17 @@
     <h1>Edit Inspection Task</h1>
     <form th:action="@{/task/} + ${task.id} + @{/edit}" th:method="put">
       <div th:replace="fragments/editTaskForm"></div>
-      <button class="btn btn-md btn-success btn-block" name="Edit Inspection Task" value="Submit" type="Submit">Edit Inspection Task</button><br/>
+      <button class="btn btn-md btn-success btn-block"
+        name="Edit Inspection Task" value="Submit" type="Submit">Edit
+        Inspection Task</button>
+      <br />
     </form>
     <form th:action="@{/task/} + ${task.id}" th:method="delete">
-      <button class="btn btn-md btn-danger btn-block" name="Delete Inspection Task" value="Delete" type="Submit">Delete Inspection Task</button>
+      <button class="btn btn-md btn-danger btn-block"
+        name="Delete Inspection Task" value="Delete" type="Submit">Delete
+        Inspection Task</button>
     </form>
   </div>
-  <div th:replace="fragments/scripts"></div>  
+  <div th:replace="fragments/scripts"></div>
 </body>
 </html>
